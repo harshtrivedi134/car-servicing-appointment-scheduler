@@ -11,7 +11,7 @@ import com.nielsen.interview.carservicingappointmentsystem.entity.Appointment;
 import com.nielsen.interview.carservicingappointmentsystem.entity.Customer;
 import com.nielsen.interview.carservicingappointmentsystem.entity.ServiceCatalog;
 import com.nielsen.interview.carservicingappointmentsystem.entity.Slot;
-import com.nielsen.interview.carservicingappointmentsystem.model.dto.AppointmentRequestDto;
+import com.nielsen.interview.carservicingappointmentsystem.model.dto.AppointmentRequest;
 import com.nielsen.interview.carservicingappointmentsystem.service.impl.AppointmentServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -149,13 +149,13 @@ public class AppointmentServiceTest {
     }
 
 
-    private AppointmentRequestDto generateRequestDto() {
-        AppointmentRequestDto appointmentRequestDto = new AppointmentRequestDto();
-        appointmentRequestDto.setCustomerId(1L);
-        appointmentRequestDto.setDescription(TestConstants.APPOINTMENT_DESCRIPTION);
-        appointmentRequestDto.setSlotIds(new ArrayList<>(Arrays.asList(1L)));
-        appointmentRequestDto.setServiceIds(new ArrayList<>(Arrays.asList(1L)));
+    private AppointmentRequest generateRequestDto() {
+        AppointmentRequest appointmentRequest = new AppointmentRequest();
+        appointmentRequest.setCustomerId(1L);
+        appointmentRequest.setDescription(TestConstants.APPOINTMENT_DESCRIPTION);
+        appointmentRequest.setSlotIds(new ArrayList<>(Arrays.asList(1L)));
+        appointmentRequest.setServiceIds(new ArrayList<>(Arrays.asList(1L)));
 
-        return appointmentRequestDto;
+        return appointmentRequest;
     }
 }

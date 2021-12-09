@@ -5,7 +5,7 @@ import com.nielsen.interview.carservicingappointmentsystem.validation.ValuesAllo
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class UpdateAppointmentStatusDto {
+public class UpdateAppointmentStatus {
     @NotNull
     private Long appointmentId;
 

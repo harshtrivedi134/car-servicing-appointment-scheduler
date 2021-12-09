@@ -11,7 +11,7 @@ import com.nielsen.interview.carservicingappointmentsystem.entity.ServiceCatalog
 import com.nielsen.interview.carservicingappointmentsystem.entity.Slot;
 import com.nielsen.interview.carservicingappointmentsystem.exception.AppointmentBookingException;
 import com.nielsen.interview.carservicingappointmentsystem.exception.CustomerNotFoundException;
-import com.nielsen.interview.carservicingappointmentsystem.model.dto.AppointmentRequestDto;
+import com.nielsen.interview.carservicingappointmentsystem.model.dto.AppointmentRequest;
 import com.nielsen.interview.carservicingappointmentsystem.service.AppointmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -41,16 +41,16 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment createNewAppointment(AppointmentRequestDto appointmentRequestDto) {
-        Customer customer = customerRepository.getById(appointmentRequestDto.getCustomerId());
+    public Appointment createNewAppointment(AppointmentRequest appointmentRequest) {
+        Customer customer = customerRepository.getById(appointmentRequest.getCustomerId());
         if (customer == null) {
             throw new CustomerNotFoundException("Customer not found for customerId" +
-                    appointmentRequestDto.getCustomerId());
+                    appointmentRequest.getCustomerId());
         }
-        List<Slot> slotsToBook = slotRepository.findAllById(appointmentRequestDto.getSlotIds());
+        List<Slot> slotsToBook = slotRepository.findAllById(appointmentRequest.getSlotIds());
         validateSlots(slotsToBook);
-        List<ServiceCatalog> serviceCatalogs = serviceCatalogRepository.findAllById(appointmentRequestDto.getServiceIds());
-        Appointment appointment = createAppointment(customer, appointmentRequestDto.getDescription(), serviceCatalogs);
+        List<ServiceCatalog> serviceCatalogs = serviceCatalogRepository.findAllById(appointmentRequest.getServiceIds());
+        Appointment appointment = createAppointment(customer, appointmentRequest.getDescription(), serviceCatalogs);
         slotsToBook.forEach(availableSlot -> availableSlot.setAppointment(appointment));
         log.info("updating slots");
         appointment.setSlots(slotsToBook);

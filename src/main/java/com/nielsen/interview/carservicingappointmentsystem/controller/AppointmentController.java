@@ -4,8 +4,8 @@ import com.nielsen.interview.carservicingappointmentsystem.constants.Appointment
 import com.nielsen.interview.carservicingappointmentsystem.constants.ServiceType;
 import com.nielsen.interview.carservicingappointmentsystem.entity.Appointment;
 import com.nielsen.interview.carservicingappointmentsystem.entity.Slot;
-import com.nielsen.interview.carservicingappointmentsystem.model.dto.AppointmentRequestDto;
-import com.nielsen.interview.carservicingappointmentsystem.model.dto.UpdateAppointmentStatusDto;
+import com.nielsen.interview.carservicingappointmentsystem.model.dto.AppointmentRequest;
+import com.nielsen.interview.carservicingappointmentsystem.model.dto.UpdateAppointmentStatus;
 import com.nielsen.interview.carservicingappointmentsystem.service.AppointmentService;
 import com.nielsen.interview.carservicingappointmentsystem.service.ServiceCatalogService;
 import com.nielsen.interview.carservicingappointmentsystem.service.SlotService;
@@ -53,9 +53,9 @@ public class AppointmentController {
     @PostMapping(value = "/create",
         consumes = {MediaType.APPLICATION_JSON_VALUE},
         produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Appointment createNewAppointment(@Valid @RequestBody AppointmentRequestDto appointmentRequestDto) {
+    public Appointment createNewAppointment(@Valid @RequestBody AppointmentRequest appointmentRequest) {
 
-        return appointmentService.createNewAppointment(appointmentRequestDto);
+        return appointmentService.createNewAppointment(appointmentRequest);
     }
 
     @GetMapping("/{id}")
@@ -71,15 +71,15 @@ public class AppointmentController {
      * If status changed to CANCELLED then make update to slot table and make it available
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Appointment> updateAppointmentStatus(@Valid @RequestBody UpdateAppointmentStatusDto
-                                                                           updateAppointmentStatusDto) {
+    public ResponseEntity<Appointment> updateAppointmentStatus(@Valid @RequestBody UpdateAppointmentStatus
+                                                                       updateAppointmentStatus) {
         Optional<Appointment> retrievedAppointment = appointmentService
-                .findAppointmentById(updateAppointmentStatusDto.getAppointmentId());
+                .findAppointmentById(updateAppointmentStatus.getAppointmentId());
 
         if (retrievedAppointment.isPresent()) {
-            log.warn("Status is {}", AppointmentStatus.valueOf(updateAppointmentStatusDto.getStatus()));
+            log.warn("Status is {}", AppointmentStatus.valueOf(updateAppointmentStatus.getStatus()));
             Appointment updatedAppointment = appointmentService.updateAppointment(retrievedAppointment.get(),
-                    AppointmentStatus.valueOf(updateAppointmentStatusDto.getStatus()));
+                    AppointmentStatus.valueOf(updateAppointmentStatus.getStatus()));
             return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

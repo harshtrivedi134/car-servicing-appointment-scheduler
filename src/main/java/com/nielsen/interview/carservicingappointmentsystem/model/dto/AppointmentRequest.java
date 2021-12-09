@@ -4,7 +4,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class AppointmentRequestDto {
+public class AppointmentRequest {
     private String description;
     @NotNull
     private Long customerId;
