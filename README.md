@@ -20,7 +20,7 @@ appointment scheduling system for a car service center with single location
    `$ mvn spring-boot:run`
    
 4. Navigate to Swagger UI 
-   `Go to http://localhost:8080/swagger-ui.html to view the endpoints and test them` 
+   Go to http://localhost:8080/swagger-ui.html to view the endpoints and test them. 
 
 5. To stop the postgres container.  
     `$ ./teardown.sh`
@@ -30,8 +30,8 @@ appointment scheduling system for a car service center with single location
 This project is licensed under the MIT License
 
 ## Schema Creation
-`spring.jpa.hibernate.ddl-auto=create in application.properties should take care of schema generation while running the app` 
-`Else create.sql file is provided for backup`
+spring.jpa.hibernate.ddl-auto=create in application.properties should take care of schema generation while running the app` 
+`Else create.sql file is provided for backup
 
 
 
