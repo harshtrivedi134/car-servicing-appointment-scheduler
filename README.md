@@ -24,3 +24,8 @@ appointment scheduling system for a car service center with single location
 ## License
 
 This project is licensed under the MIT License
+
+## Schema Creation
+`spring.jpa.hibernate.ddl-auto=create in application.properties should take care of schema generation while running the app` 
+`Else create.sql file is provided for backup`
+
