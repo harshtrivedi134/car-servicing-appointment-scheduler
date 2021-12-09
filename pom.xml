@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nielsen.interview</groupId>
-    <artifactId>car-servicing-appointment-system</artifactId>
+    <artifactId>car-servicing-appointment-scheduler</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>car-servicing-appointment-system</name>
     <description>Demo project for Spring Boot</description>
