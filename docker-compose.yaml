@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/appointmentscheduler
+    depends_on:
+      - postgres_db
+    networks:
+      - appointmentscheduler_network
+
+  postgres_db:
+    image: postgres:14.1
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: appointmentscheduler
+      POSTGRES_USER: htrivedi
+      POSTGRES_PASSWORD: H@r!1102
+    networks:
+      - appointmentscheduler_network
+
+networks:
+  appointmentscheduler_network:
