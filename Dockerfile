@@ -4,6 +4,6 @@ COPY pom.xml /usr/src/app
 RUN mvn -f /usr/src/app/pom.xml clean install -DskipTests -DtrimStackTrace=false -Dversion=1.0.0
 
 FROM gcr.io/distroless/java:11
-COPY --from=build /usr/src/app/target/car-servicing-appointment-system-0.0.1-SNAPSHOT.jar /usr/app/car-servicing-appointment-system-1.0.0.jar
+COPY --from=build /usr/src/app/target/car-servicing-appointment-scheduler-1.0.0.jar /usr/app/car-servicing-appointment-scheduler-1.0.0.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/app/car-servicing-appointment-system-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/usr/app/car-servicing-appointment-scheduler-1.0.0.jar"]
