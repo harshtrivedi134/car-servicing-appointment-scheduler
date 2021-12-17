@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_DB: appointmentscheduler
       POSTGRES_USER: htrivedi
-      POSTGRES_PASSWORD: H@r!1102
+      POSTGRES_PASSWORD: *****
     networks:
       - appointmentscheduler_network
 
